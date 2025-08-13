@@ -1,0 +1,346 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a569d);
+            color: #e0f7fa;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 25px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #4db6ac;
+            background: rgba(13, 43, 56, 0.6);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #80deea;
+            text-shadow: 0 0 10px rgba(128, 222, 234, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b2ebf2;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .search-container {
+            margin: 25px auto;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 14px 20px;
+            padding-left: 45px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            position: relative;
+        }
+        
+        #search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        #search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(77, 182, 172, 0.6);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4db6ac;
+            font-size: 1.2rem;
+            z-index: 11;
+        }
+        
+        #suggestions-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(19, 53, 69, 0.95);
+            border-radius: 0 0 10px 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: none;
+            border: 1px solid rgba(77, 182, 172, 0.4);
+            border-top: none;
+        }
+        
+        .suggestion-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        
+        .suggestion-item:hover {
+            background: rgba(33, 73, 96, 0.6);
+        }
+        
+        .suggestion-item i {
+            color: #4db6ac;
+            width: 20px;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(13, 43, 56, 0.7);
+            border-radius: 10px;
+            border: 1px solid #4db6ac;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .mindmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .category {
+            background: rgba(13, 43, 56, 0.85);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(77, 182, 172, 0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+            border-color: #4db6ac;
+        }
+        
+        .category-header {
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+            transition: background 0.3s;
+        }
+        
+        .category-header:hover {
+            background: rgba(33, 73, 96, 0.6);
+        }
+        
+        .toggle-icon {
+            font-size: 1.6rem;
+            transition: transform 0.3s;
+        }
+        
+        .category-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 0 25px 25px;
+            background: rgba(19, 53, 69, 0.6);
+        }
+        
+        .organism-card {
+            background: rgba(10, 35, 47, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(77, 182, 172, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .organism-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: #4db6ac;
+        }
+        
+        .organism-name {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #80deea;
+            border-bottom: 2px solid #00796b;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .organism-name i {
+            color: #4db6ac;
+        }
+        
+        .antibiotics-container {
+            margin-top: 15px;
+        }
+        
+        .antibiotic-header {
+            font-weight: bold;
+            color: #4db6ac;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .antibiotic {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: rgba(13, 56, 66, 0.5);
+            border-radius: 8px;
+            border-left: 4px solid #4db6ac;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .antibiotic:hover {
+            background: rgba(19, 79, 92, 0.7);
+            border-left: 4px solid #80deea;
+        }
+        
+        .abx-name {
+            font-weight: bold;
+            color: #b2ebf2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .abx-name i {
+            transition: transform 0.3s;
+        }
+        
+        .abx-details {
+            font-size: 0.95rem;
+            color: #b2ebf2;
+            line-height: 1.5;
+            padding-top: 10px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .abx-details.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .note {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(13, 43, 56, 0.7);
+            border-radius: 10px;
+            border: 1px solid #4db6ac;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            color: #80deea;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #b2ebf2;
+            font-size: 0.9rem;
+        }
+        
+        /* Color coding */
+        .gram-positive-cocci { background: linear-gradient(90deg, #2c3e50, #1a2a3a); }
+        .gram-positive-bacilli { background: linear-gradient(90deg, #4a235a, #2e1437); }
+        .branching { background: linear-gradient(90deg, #1b5e20, #0d3b12); }
+        .gram-negative-cocci { background: linear-gradient(90deg, #e65100, #bf360c); }
+        .coccobacilli { background: linear-gradient(90deg, #5d4037, #3e2723); }
+        .gram-negative-bacilli { background: linear-gradient(90deg, #0d47a1, #002171); }
+        .mycobacteria { background: linear-gradient(90deg, #4e342e, #3e2723); }
+        .spirochetes { background: linear-gradient(90deg, #880e4f, #560027); }
+        .comma-shaped { background: linear-gradient(90deg, #33691e, #1b3d0f); }
+        .other { background: linear-gradient(90deg, #006064, #00363a); }
+        
+        .gp-cocci { background-color: #2c3e50; }
+        .gp-bacilli { background-color: #4a235a; }
+        .branch { background-color: #1b5e20; }
+        .gn-cocci { background-color: #e65100; }
+        .coccobacilli-c { background-color: #5d4037; }
+        .gn-bacilli { background-color: #0d47a1; }
+        .myco { background-color: #4e342e; }
+        .spiro { background-color: #880e4f; }
+        .comma { background-color: #33691e; }
+        .other-c { background-color: #006064; }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .category-content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    

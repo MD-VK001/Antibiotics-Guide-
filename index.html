@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Bacterial Antibiotic Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-bacteria"></i> Advanced Bacterial Antibiotic Guide</h1>
+            <p class="subtitle">Interactive mind map with auto-suggest search and antibiotic details</p>
+        </header>
+        
+        <div class="search-container">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <input type="text" id="search-input" placeholder="Search for bacteria or antibiotic...">
+            <div id="suggestions-container"></div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="color-box gp-cocci"></div>Gram-Positive Cocci</div>
+            <div class="legend-item"><div class="color-box gp-bacilli"></div>Gram-Positive Bacilli</div>
+            <div class="legend-item"><div class="color-box branch"></div>Branching Filamentous</div>
+            <div class="legend-item"><div class="color-box gn-cocci"></div>Gram-Negative Cocci</div>
+            <div class="legend-item"><div class="color-box coccobacilli-c"></div>Coccobacilli</div>
+            <div class="legend-item"><div class="color-box gn-bacilli"></div>Gram-Negative Bacilli</div>
+            <div class="legend-item"><div class="color-box myco"></div>Mycobacteria</div>
+            <div class="legend-item"><div class="color-box spiro"></div>Spirochetes</div>
+            <div class="legend-item"><div class="color-box comma"></div>Comma-shaped</div>
+            <div class="legend-item"><div class="color-box other-c"></div>Other Bacteria</div>
+        </div>
+        
+        <div class="mindmap-container">
+            <!-- Gram-Positive Cocci -->
+            <div class="category">
+                <div class="category-header gram-positive-cocci" onclick="toggleCategory('gp-cocci')">
+                    <span><i class="fas fa-circle"></i> Cocci (Gram-Positive)</span>
+                    <span class="toggle-icon" id="gp-cocci-icon">+</span>
+                </div>
+                <div class="category-content" id="gp-cocci-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Gram-Positive Bacilli -->
+            <div class="category">
+                <div class="category-header gram-positive-bacilli" onclick="toggleCategory('gp-bacilli')">
+                    <span><i class="fas fa-rod"></i> Bacilli (Gram-Positive)</span>
+                    <span class="toggle-icon" id="gp-bacilli-icon">+</span>
+                </div>
+                <div class="category-content" id="gp-bacilli-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Branching Filamentous -->
+            <div class="category">
+                <div class="category-header branching" onclick="toggleCategory('branching')">
+                    <span><i class="fas fa-tree"></i> Branching Filamentous</span>
+                    <span class="toggle-icon" id="branching-icon">+</span>
+                </div>
+                <div class="category-content" id="branching-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Gram-Negative Cocci -->
+            <div class="category">
+                <div class="category-header gram-negative-cocci" onclick="toggleCategory('gn-cocci')">
+                    <span><i class="fas fa-circle"></i> Cocci (Gram-Negative)</span>
+                    <span class="toggle-icon" id="gn-cocci-icon">+</span>
+                </div>
+                <div class="category-content" id="gn-cocci-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Coccobacilli -->
+            <div class="category">
+                <div class="category-header coccobacilli" onclick="toggleCategory('coccobacilli')">
+                    <span><i class="fas fa-egg"></i> Coccobacilli</span>
+                    <span class="toggle-icon" id="coccobacilli-icon">+</span>
+                </div>
+                <div class="category-content" id="coccobacilli-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Gram-Negative Bacilli -->
+            <div class="category">
+                <div class="category-header gram-negative-bacilli" onclick="toggleCategory('gn-bacilli')">
+                    <span><i class="fas fa-rod"></i> Bacilli (Gram-Negative)</span>
+                    <span class="toggle-icon" id="gn-bacilli-icon">+</span>
+                </div>
+                <div class="category-content" id="gn-bacilli-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Mycobacteria -->
+            <div class="category">
+                <div class="category-header mycobacteria" onclick="toggleCategory('mycobacteria')">
+                    <span><i class="fas fa-shield-virus"></i> Mycobacteria</span>
+                    <span class="toggle-icon" id="mycobacteria-icon">+</span>
+                </div>
+                <div class="category-content" id="mycobacteria-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Spirochetes -->
+            <div class="category">
+                <div class="category-header spirochetes" onclick="toggleCategory('spirochetes')">
+                    <span><i class="fas fa-worm"></i> Spirochetes</span>
+                    <span class="toggle-icon" id="spirochetes-icon">+</span>
+                </div>
+                <div class="category-content" id="spirochetes-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Comma-shaped -->
+            <div class="category">
+                <div class="category-header comma-shaped" onclick="toggleCategory('comma-shaped')">
+                    <span><i class="fas fa-comma"></i> Comma-shaped</span>
+                    <span class="toggle-icon" id="comma-shaped-icon">+</span>
+                </div>
+                <div class="category-content" id="comma-shaped-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Other Bacteria -->
+            <div class="category">
+                <div class="category-header other" onclick="toggleCategory('other')">
+                    <span><i class="fas fa-biohazard"></i> Other Bacteria</span>
+                    <span class="toggle-icon" id="other-icon">+</span>
+                </div>
+                <div class="category-content" id="other-content" style="display:none;">
+                    <!-- Organisms will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="note">
+            <p><span class="highlight"><i class="fas fa-exclamation-triangle"></i> Important Note:</span> Antibiotic regimens should be tailored to individual patient factors, infection site, and local resistance patterns. Doses shown are for adults with normal renal function. For pediatric dosing, pregnancy, renal impairment, or complex infections, consult current guidelines (IDSA, Sanford Guide). Always confirm susceptibility testing when possible.</p>
+        </div>
+        
+        <footer>
+            <p>Bacterial Antibiotic Reference Guide | Created for Educational Purposes</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Data structure containing all organisms and their antibiotics
+        const bacteriaData = {
+            "gp-cocci": [
+                {
+                    name: "Viridans Streptococci",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "2–4 million units IV q4h (4–6 weeks for endocarditis)"},
+                        {name: "Ceftriaxone", details: "2 g IV q24h (4 weeks)"},
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h (target trough 10–20 µg/mL)"}
+                    ]
+                },
+                {
+                    name: "S. pneumoniae",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "4 million units IV q4h (14 days for meningitis, if susceptible)"},
+                        {name: "Ceftriaxone", details: "2 g IV q24h (10–14 days)"},
+                        {name: "Levofloxacin", details: "750 mg PO/IV q24h (7–14 days)"}
+                    ]
+                },
+                {
+                    name: "S. pyogenes",
+                    antibiotics: [
+                        {name: "Penicillin V", details: "500 mg PO q6h (10 days for pharyngitis)"},
+                        {name: "Amoxicillin", details: "50 mg/kg PO q24h (max 1 g, 10 days)"},
+                        {name: "Clindamycin", details: "600 mg IV q8h (for necrotizing fasciitis)"}
+                    ]
+                },
+                {
+                    name: "S. agalactiae",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "3–4 million units IV q4h (for neonatal sepsis)"},
+                        {name: "Ampicillin", details: "2 g IV q4h (14 days for endocarditis)"},
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h (if allergic)"}
+                    ]
+                },
+                {
+                    name: "S. gallolyticus",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "4 million units IV q4h (4–6 weeks for endocarditis)"},
+                        {name: "Ceftriaxone", details: "2 g IV q24h (4 weeks)"},
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h (if resistant)"}
+                    ]
+                },
+                {
+                    name: "Enterococci",
+                    antibiotics: [
+                        {name: "Ampicillin + Gentamicin", details: "Ampicillin 2 g IV q4h + Gentamicin 1 mg/kg IV q8h (4–6 weeks for endocarditis)"},
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h (trough 10–20 µg/mL)"},
+                        {name: "Linezolid", details: "600 mg PO/IV q12h (14–28 days for VRE)"}
+                    ]
+                },
+                {
+                    name: "S. aureus (MSSA)",
+                    antibiotics: [
+                        {name: "Oxacillin", details: "2 g IV q4h (4–6 weeks for osteomyelitis)"},
+                        {name: "Cefazolin", details: "2 g IV q8h (7–14 days for bacteremia)"},
+                        {name: "Clindamycin", details: "600 mg IV q8h (for toxin-mediated infections)"}
+                    ]
+                },
+                {
+                    name: "S. aureus (MRSA)",
+                    antibiotics: [
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h (trough 15–20 µg/mL)"},
+                        {name: "Daptomycin", details: "6 mg/kg IV q24h (for bacteremia)"},
+                        {name: "Linezolid", details: "600 mg PO/IV q12h (10–14 days)"}
+                    ]
+                },
+                {
+                    name: "S. epidermidis",
+                    antibiotics: [
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h (trough 15–20 µg/mL)"},
+                        {name: "Rifampin", details: "600 mg PO/IV q24h (combined therapy for prosthetic infections)"},
+                        {name: "Daptomycin", details: "6 mg/kg IV q24h"}
+                    ]
+                },
+                {
+                    name: "S. saprophyticus",
+                    antibiotics: [
+                        {name: "Trimethoprim-Sulfamethoxazole", details: "160/800 mg PO q12h (3 days)"},
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (3 days)"},
+                        {name: "Fosfomycin", details: "3 g PO single dose"}
+                    ]
+                }
+            ],
+            "gp-bacilli": [
+                {
+                    name: "Clostridium tetani",
+                    antibiotics: [
+                        {name: "Metronidazole", details: "500 mg PO/IV q6–8h (7–10 days)"},
+                        {name: "Penicillin G", details: "4 million units IV q4h (7–10 days)"}
+                    ]
+                },
+                {
+                    name: "Clostridium botulinum",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "4 million units IV q4h"},
+                        {name: "Metronidazole", details: "500 mg PO/IV q8h"}
+                    ]
+                },
+                {
+                    name: "Clostridium perfringens",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "4 million units IV q4h"},
+                        {name: "Clindamycin", details: "600 mg IV q8h"},
+                        {name: "Metronidazole", details: "500 mg PO/IV q8h"}
+                    ]
+                },
+                {
+                    name: "Bacillus anthracis",
+                    antibiotics: [
+                        {name: "Ciprofloxacin", details: "400 mg IV q12h (60 days for inhalation anthrax)"},
+                        {name: "Doxycycline", details: "100 mg PO/IV q12h (60 days)"}
+                    ]
+                },
+                {
+                    name: "Bacillus cereus",
+                    antibiotics: [
+                        {name: "Vancomycin", details: "15–20 mg/kg IV q8–12h"},
+                        {name: "Clindamycin", details: "600 mg IV q8h"},
+                        {name: "Ciprofloxacin", details: "400 mg IV q12h"}
+                    ]
+                },
+                {
+                    name: "Listeria monocytogenes",
+                    antibiotics: [
+                        {name: "Ampicillin + Gentamicin", details: "Ampicillin 2 g IV q4h + Gentamicin 1 mg/kg q8h (14–21 days)"},
+                        {name: "Trimethoprim-Sulfamethoxazole", details: "15–20 mg/kg/day IV (divided q6–8h)"}
+                    ]
+                },
+                {
+                    name: "Corynebacterium diphtheriae",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "4 million units IV q4h (14 days)"},
+                        {name: "Erythromycin", details: "500 mg PO q6h (14 days)"}
+                    ]
+                }
+            ],
+            "branching": [
+                {
+                    name: "Nocardia asteroides",
+                    antibiotics: [
+                        {name: "Trimethoprim-Sulfamethoxazole", details: "15–20 mg/kg/day IV (divided q6–8h)"},
+                        {name: "Imipenem", details: "500 mg IV q6h"},
+                        {name: "Amikacin", details: "15 mg/kg/day IV"}
+                    ]
+                },
+                {
+                    name: "Actinomyces israelii",
+                    antibiotics: [
+                        {name: "Penicillin G", details: "3–4 million units IV q4h (4–6 weeks)"},
+                        {name: "Ampicillin", details: "2 g IV q4h"},
+                        {name: "Doxycycline", details: "100 mg PO q12h"}
+                    ]
+                }
+            ],
+            "gn-cocci": [
+                {
+                    name: "Neisseria meningitidis",
+                    antibiotics: [
+                        {name: "Ceftriaxone", details: "2 g IV q12h (7 days)"},
+                        {name: "Penicillin G", details: "4 million units IV q4h (if susceptible)"}
+                    ]
+                },
+                {
+                    name: "Neisseria gonorrhoeae",
+                    antibiotics: [
+                        {name: "Ceftriaxone", details: "500 mg IM single dose + Azithromycin 1 g PO"},
+                        {name: "Cefixime", details: "400 mg PO single dose"}
+                    ]
+                },
+                {
+                    name: "Moraxella catarrhalis",
+                    antibiotics: [
+                        {name: "Amoxicillin-Clavulanate", details: "875/125 mg PO q12h (7–10 days)"},
+                        {name: "Cefuroxime", details: "500 mg PO q12h"},
+                        {name: "Trimethoprim-Sulfamethoxazole", details: "160/800 mg PO q12h"}
+                    ]
+                }
+            ],
+            "coccobacilli": [
+                {
+                    name: "Haemophilus influenzae",
+                    antibiotics: [
+                        {name: "Ceftriaxone", details: "2 g IV q24h (7–14 days)"},
+                        {name: "Amoxicillin-Clavulanate", details: "875/125 mg PO q12h (10 days)"}
+                    ]
+                },
+                {
+                    name: "Bordetella pertussis",
+                    antibiotics: [
+                        {name: "Azithromycin", details: "500 mg PO day 1, then 250 mg PO q24h days 2–5"},
+                        {name: "Clarithromycin", details: "500 mg PO q12h (7 days)"}
+                    ]
+                },
+                {
+                    name: "Pasteurella multocida",
+                    antibiotics: [
+                        {name: "Amoxicillin-Clavulanate", details: "875/125 mg PO q12h (7–10 days)"},
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (7 days)"}
+                    ]
+                },
+                {
+                    name: "Brucella spp.",
+                    antibiotics: [
+                        {name: "Doxycycline + Rifampin", details: "Doxycycline 100 mg PO q12h + Rifampin 600 mg PO q24h (6 weeks)"},
+                        {name: "Trimethoprim-Sulfamethoxazole", details: "160/800 mg PO q12h (6 weeks)"}
+                    ]
+                },
+                {
+                    name: "Francisella tularensis",
+                    antibiotics: [
+                        {name: "Streptomycin", details: "1 g IM q12h (10 days)"},
+                        {name: "Gentamicin", details: "5 mg/kg IV q24h (10 days)"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (14–21 days)"}
+                    ]
+                }
+            ],
+            "gn-bacilli": [
+                {
+                    name: "Salmonella spp.",
+                    antibiotics: [
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (7–14 days)"},
+                        {name: "Ceftriaxone", details: "2 g IV q24h (7–14 days)"}
+                    ]
+                },
+                {
+                    name: "Salmonella typhi",
+                    antibiotics: [
+                        {name: "Ceftriaxone", details: "2 g IV q24h (7–14 days)"},
+                        {name: "Azithromycin", details: "1 g PO q24h (5 days)"}
+                    ]
+                },
+                {
+                    name: "Shigella",
+                    antibiotics: [
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (3 days)"},
+                        {name: "Azithromycin", details: "500 mg PO q24h (3 days)"}
+                    ]
+                },
+                {
+                    name: "E. coli",
+                    antibiotics: [
+                        {name: "Ceftriaxone", details: "1–2 g IV q24h (7–14 days)"},
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (7 days for UTI)"}
+                    ]
+                },
+                {
+                    name: "Klebsiella",
+                    antibiotics: [
+                        {name: "Ceftriaxone", details: "2 g IV q24h"},
+                        {name: "Piperacillin-Tazobactam", details: "4.5 g IV q6h"}
+                    ]
+                },
+                {
+                    name: "Proteus mirabilis",
+                    antibiotics: [
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (7 days)"},
+                        {name: "Ceftriaxone", details: "1–2 g IV q24h (7–14 days)"}
+                    ]
+                },
+                {
+                    name: "Pseudomonas aeruginosa",
+                    antibiotics: [
+                        {name: "Piperacillin-Tazobactam", details: "4.5 g IV q6h (7–14 days)"},
+                        {name: "Cefepime", details: "2 g IV q8h"},
+                        {name: "Meropenem", details: "1 g IV q8h"}
+                    ]
+                },
+                {
+                    name: "Yersinia pestis & enterocolitica",
+                    antibiotics: [
+                        {name: "Gentamicin", details: "5 mg/kg IV q24h (10 days)"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (10 days)"},
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (10 days)"}
+                    ]
+                },
+                {
+                    name: "Enterobacter",
+                    antibiotics: [
+                        {name: "Ciprofloxacin", details: "400 mg IV q12h"},
+                        {name: "Meropenem", details: "1 g IV q8h"}
+                    ]
+                },
+                {
+                    name: "Citrobacter",
+                    antibiotics: [
+                        {name: "Ciprofloxacin", details: "400 mg IV q12h"},
+                        {name: "Piperacillin-Tazobactam", details: "4.5 g IV q6h"}
+                    ]
+                },
+                {
+                    name: "Serratia marcescens",
+                    antibiotics: [
+                        {name: "Cefepime", details: "2 g IV q8h"},
+                        {name: "Meropenem", details: "1 g IV q8h"},
+                        {name: "Ciprofloxacin", details: "400 mg IV q12h"}
+                    ]
+                },
+                {
+                    name: "Bartonella henselae",
+                    antibiotics: [
+                        {name: "Azithromycin", details: "500 mg PO day 1, then 250 mg PO days 2–5"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (4–6 weeks)"},
+                        {name: "Rifampin", details: "300 mg PO q12h"}
+                    ]
+                },
+                {
+                    name: "Legionella pneumophila",
+                    antibiotics: [
+                        {name: "Azithromycin", details: "500 mg IV/PO q24h (5–10 days)"},
+                        {name: "Levofloxacin", details: "750 mg IV/PO q24h (5–10 days)"}
+                    ]
+                }
+            ],
+            "mycobacteria": [
+                {
+                    name: "Mycobacterium tuberculosis",
+                    antibiotics: [
+                        {name: "Isoniazid + Rifampin + Pyrazinamide + Ethambutol", details: "Intensive phase: 2 months; Continuation: INH+RIF for 4 months"},
+                        {name: "Rifapentine + Isoniazid", details: "Once weekly for 12 weeks (latent TB)"}
+                    ]
+                },
+                {
+                    name: "Mycobacterium leprae",
+                    antibiotics: [
+                        {name: "Dapsone + Rifampin + Clofazimine", details: "Multidrug therapy for 12 months (multibacillary)"}
+                    ]
+                },
+                {
+                    name: "Mycobacterium avium-intracellulare",
+                    antibiotics: [
+                        {name: "Clarithromycin + Ethambutol ± Rifabutin", details: "Clarithromycin 500 mg PO q12h + Ethambutol 15 mg/kg PO q24h"}
+                    ]
+                },
+                {
+                    name: "Mycobacterium scrofulaceum",
+                    antibiotics: [
+                        {name: "Clarithromycin + Rifampin", details: "Clarithromycin 500 mg PO q12h + Rifampin 600 mg PO q24h"},
+                        {name: "Azithromycin + Ethambutol", details: "Azithromycin 500 mg PO q24h + Ethambutol 15 mg/kg PO q24h"}
+                    ]
+                },
+                {
+                    name: "Mycobacterium marinum",
+                    antibiotics: [
+                        {name: "Clarithromycin", details: "500 mg PO q12h (3–6 months)"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (3–6 months)"},
+                        {name: "Trimethoprim-Sulfamethoxazole", details: "160/800 mg PO q12h"}
+                    ]
+                }
+            ],
+            "spirochetes": [
+                {
+                    name: "Borrelia burgdorferi",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (10–21 days)"},
+                        {name: "Amoxicillin", details: "500 mg PO q8h (14–21 days)"},
+                        {name: "Ceftriaxone", details: "2 g IV q24h (14–28 days for neurological involvement)"}
+                    ]
+                },
+                {
+                    name: "Leptospira interrogans",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (7 days)"},
+                        {name: "Penicillin G", details: "1.5 million units IV q6h (7 days)"},
+                        {name: "Ceftriaxone", details: "1 g IV q24h (7 days)"}
+                    ]
+                },
+                {
+                    name: "Treponema pallidum",
+                    antibiotics: [
+                        {name: "Benzathine Penicillin G", details: "2.4 million units IM single dose (primary, secondary, early latent)"},
+                        {name: "Penicillin G", details: "3–4 million units IV q4h (10–14 days for neurosyphilis)"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (28 days for penicillin allergy)"}
+                    ]
+                }
+            ],
+            "comma-shaped": [
+                {
+                    name: "Campylobacter jejuni",
+                    antibiotics: [
+                        {name: "Azithromycin", details: "500 mg PO q24h (3 days)"},
+                        {name: "Ciprofloxacin", details: "500 mg PO q12h (3 days)"}
+                    ]
+                },
+                {
+                    name: "Vibrio cholerae",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "300 mg PO single dose"},
+                        {name: "Azithromycin", details: "1 g PO single dose"},
+                        {name: "Ciprofloxacin", details: "1 g PO single dose"}
+                    ]
+                },
+                {
+                    name: "Helicobacter pylori",
+                    antibiotics: [
+                        {name: "Amoxicillin + Clarithromycin + PPI", details: "Amoxicillin 1 g PO q12h + Clarithromycin 500 mg PO q12h + PPI (14 days)"},
+                        {name: "Metronidazole + Tetracycline + Bismuth + PPI", details: "Quadruple therapy for 14 days"}
+                    ]
+                }
+            ],
+            "other": [
+                {
+                    name: "Chlamydia trachomatis",
+                    antibiotics: [
+                        {name: "Azithromycin", details: "1 g PO single dose"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (7 days)"}
+                    ]
+                },
+                {
+                    name: "Chlamydophila pneumoniae",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (14 days)"},
+                        {name: "Azithromycin", details: "500 mg PO day 1, then 250 mg PO days 2–5"}
+                    ]
+                },
+                {
+                    name: "Chlamydophila psittaci",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (14–21 days)"},
+                        {name: "Azithromycin", details: "500 mg PO q24h (10 days)"}
+                    ]
+                },
+                {
+                    name: "Coxiella burnetii",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (14–21 days)"},
+                        {name: "Hydroxychloroquine + Doxycycline", details: "For chronic Q fever (18 months)"}
+                    ]
+                },
+                {
+                    name: "Gardnerella vaginalis",
+                    antibiotics: [
+                        {name: "Metronidazole", details: "500 mg PO q12h (7 days)"},
+                        {name: "Clindamycin", details: "300 mg PO q12h (7 days)"}
+                    ]
+                },
+                {
+                    name: "Mycoplasma pneumoniae",
+                    antibiotics: [
+                        {name: "Azithromycin", details: "500 mg PO q24h (5 days)"},
+                        {name: "Doxycycline", details: "100 mg PO q12h (7–14 days)"},
+                        {name: "Levofloxacin", details: "750 mg PO q24h (7–14 days)"}
+                    ]
+                },
+                {
+                    name: "Rickettsia prowazekii",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (7 days or 2 days after defervescence)"}
+                    ]
+                },
+                {
+                    name: "Rickettsia rickettsii",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (7 days or 2 days after defervescence)"}
+                    ]
+                },
+                {
+                    name: "Rickettsia typhi",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (7 days or 2 days after defervescence)"}
+                    ]
+                },
+                {
+                    name: "Ehrlichia",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (7–14 days)"}
+                    ]
+                },
+                {
+                    name: "Anaplasma",
+                    antibiotics: [
+                        {name: "Doxycycline", details: "100 mg PO q12h (7–14 days)"}
+                    ]
+                }
+            ]
+        };
+
+        // Function to toggle category visibility
+        function toggleCategory(categoryId) {
+            const content = document.getElementById(`${categoryId}-content`);
+            const icon = document.getElementById(`${categoryId}-icon`);
+            
+            if (content.style.display === "none") {
+                content.style.display = "grid";
+                icon.textContent = "-";
+            } else {
+                content.style.display = "none";
+                icon.textContent = "+";
+            }
+        }
+
+        // Function to toggle antibiotic details
+        function toggleDetails(element) {
+            const details = element.querySelector('.abx-details');
+            const icon = element.querySelector('.abx-name i');
+            
+            if (details.classList.contains('active')) {
+                details.classList.remove('active');
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                details.classList.add('active');
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+
+        // Function to render bacteria data to the DOM
+        function renderBacteriaData() {
+            for (const category in bacteriaData) {
+                const contentElement = document.getElementById(`${category}-content`);
+                contentElement.innerHTML = ""; 
+                
+                bacteriaData[category].forEach(organism => {
+                    const organismCard = document.createElement("div");
+                    organismCard.className = "organism-card";
+                    
+                    let html = `
+                        <div class="organism-name">
+                            <i class="fas fa-bacterium"></i> ${organism.name}
+                        </div>
+                        <div class="antibiotics-container">
+                            <div class="antibiotic-header">
+                                <i class="fas fa-pills"></i> Antibiotic Treatments
+                            </div>
+                    `;
+                    
+                    organism.antibiotics.forEach(abx => {
+                        html += `
+                            <div class="antibiotic" onclick="toggleDetails(this)">
+                                <div class="abx-name">
+                                    <span>${abx.name}</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="abx-details">${abx.details}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                    organismCard.innerHTML = html;
+                    contentElement.appendChild(organismCard);
+                });
+            }
+        }
+
+        // Fuzzy search function (handles minor misspellings)
+        function fuzzySearch(term, target) {
+            term = term.toLowerCase();
+            target = target.toLowerCase();
+            
+            // Exact match
+            if (target.includes(term)) return true;
+            
+            // Allow for minor misspellings (1-2 character differences)
+            if (Math.abs(term.length - target.length) > 2) return false;
+            
+            // Check for character similarity
+            let matches = 0;
+            let termIndex = 0;
+            
+            for (let i = 0; i < target.length; i++) {
+                if (termIndex < term.length && target[i] === term[termIndex]) {
+                    matches++;
+                    termIndex++;
+                }
+            }
+            
+            // If more than 70% of characters match, consider it a match
+            return matches / term.length > 0.7;
+        }
+
+        // Initialize the mind map
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBacteriaData();
+            
+            const searchInput = document.getElementById('search-input');
+            const suggestionsContainer = document.getElementById('suggestions-container');
+            
+            // Build search index for auto-suggestions
+            let searchIndex = [];
+            for (const category in bacteriaData) {
+                bacteriaData[category].forEach(organism => {
+                    // Add organism to index
+                    searchIndex.push({
+                        type: 'organism',
+                        name: organism.name,
+                        category: category
+                    });
+                    
+                    // Add antibiotics to index
+                    organism.antibiotics.forEach(abx => {
+                        searchIndex.push({
+                            type: 'antibiotic',
+                            name: abx.name,
+                            organism: organism.name,
+                            category: category
+                        });
+                    });
+                });
+            }
+            
+            // Add search functionality with auto-suggestions
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim();
+                suggestionsContainer.innerHTML = '';
+                
+                if (searchTerm.length < 2) {
+                    suggestionsContainer.style.display = 'none';
+                    return;
+                }
+                
+                // Filter search index for matches
+                const matchedItems = searchIndex.filter(item => {
+                    return fuzzySearch(searchTerm, item.name) || 
+                           fuzzySearch(searchTerm, item.type === 'antibiotic' ? item.organism : '');
+                });
+                
+                // Sort by relevance (organism matches first, then antibiotics)
+                matchedItems.sort((a, b) => {
+                    if (a.type === 'organism' && b.type !== 'organism') return -1;
+                    if (a.type !== 'organism' && b.type === 'organism') return 1;
+                    return 0;
+                });
+                
+                // Show suggestions
+                if (matchedItems.length > 0) {
+                    matchedItems.slice(0, 8).forEach(item => {
+                        const suggestion = document.createElement('div');
+                        suggestion.className = 'suggestion-item';
+                        
+                        if (item.type === 'organism') {
+                            suggestion.innerHTML = `
+                                <i class="fas fa-bacterium"></i>
+                                <div>
+                                    <strong>${item.name}</strong>
+                                    <div class="suggestion-type">Bacteria</div>
+                                </div>
+                            `;
+                        } else {
+                            suggestion.innerHTML = `
+                                <i class="fas fa-pills"></i>
+                                <div>
+                                    <strong>${item.name}</strong>
+                                    <div class="suggestion-type">Antibiotic for ${item.organism}</div>
+                                </div>
+                            `;
+                        }
+                        
+                        suggestion.addEventListener('click', () => {
+                            searchInput.value = item.type === 'organism' ? item.name : item.name;
+                            suggestionsContainer.style.display = 'none';
+                            
+                            // Trigger search
+                            filterOrganismCards(item.type === 'organism' ? item.name : item.organism);
+                            
+                            // Expand the relevant category
+                            toggleCategory(item.category);
+                            
+                            // Scroll to the category
+                            const categoryElement = document.querySelector(`.category-header[onclick="toggleCategory('${item.category}')"]`);
+                            categoryElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        });
+                        
+                        suggestionsContainer.appendChild(suggestion);
+                    });
+                    
+                    suggestionsContainer.style.display = 'block';
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+            
+            // Hide suggestions when clicking elsewhere
+            document.addEventListener('click', (e) => {
+                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+            
+            // Filter cards based on search
+            function filterOrganismCards(searchTerm) {
+                searchTerm = searchTerm.toLowerCase().trim();
+                
+                if (searchTerm === '') {
+                    document.querySelectorAll('.organism-card').forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    return;
+                }
+                
+                document.querySelectorAll('.organism-card').forEach(card => {
+                    const organismName = card.querySelector('.organism-name').textContent.toLowerCase();
+                    const abxNames = Array.from(card.querySelectorAll('.abx-name span')).map(
+                        span => span.textContent.toLowerCase()
+                    );
+                    
+                    if (fuzzySearch(searchTerm, organismName)) {
+                        card.style.display = 'block';
+                        return;
+                    }
+                    
+                    for (const abxName of abxNames) {
+                        if (fuzzySearch(searchTerm, abxName)) {
+                            card.style.display = 'block';
+                            return;
+                        }
+                    }
+                    
+                    card.style.display = 'none';
+                });
+            }
+            
+            // Also filter on Enter key
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    filterOrganismCards(searchInput.value);
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
